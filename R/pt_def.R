@@ -94,6 +94,17 @@ pt_def = function(formulas, dists, links = default_link(dists), variances = rep(
 
 
 
+#' Add (optionally randomly-generated) coefficients to a formula in a definition data.table.
+#'
+#' @param chr_formula Character vector, of the form `'x1+x2+x3'`
+#' @param coefs Numeric vector, coefficients, length equal to number of terms (including intercept)
+#' @param u_coef Numeric length 1, coefficient for the variable `u`, which we fix to be constant over time to ensure parallel trends
+#'
+#' @return Another character vector with coefficients added to formulas, of the form `'a + b*x1 + c*x2 + d*x3'`
+#' @export
+#'
+#' @examples
+#' add_coefs_to_formula('x1+x2+x3')
 add_coefs_to_formula = function(chr_formula, coefs = NULL, u_coef = NULL){
 
   if(length(chr_formula) == 0) {

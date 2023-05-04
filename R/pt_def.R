@@ -54,6 +54,7 @@ pt_def = function(formulas, dists, links = default_link(dists), variances = rep(
     def = simstudy::defData(def,
                             varname = as.character(glue('w{j}{t}', .envir = list(t = 0, j=j))),
                             dist = dists[glue('w{j}')],
+                            links = links[glue('w{j}')],
                             formula = glue_formula(formulas[[glue('w{j}')]], glue_vars = list(t=0)) %>% add_coefs_to_formula(),
                             variance = variances[glue('w{j}')])
   }
@@ -91,8 +92,6 @@ pt_def = function(formulas, dists, links = default_link(dists), variances = rep(
   return(def)
 
 }
-
-
 
 #' Add (optionally randomly-generated) coefficients to a formula in a definition data.table.
 #'
